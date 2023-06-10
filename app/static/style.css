@@ -1,0 +1,532 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+@import url('https://api.fontshare.com/v2/css?f[]=gambetta@301&display=swap');
+
+/* -------------------- TOGGLE THEME & VARIABLES (start) -------------------- */
+/* -------------------------------------------------------------------------- */
+:root {
+    --body-font: "Soehne", system-ui, -apple-system, Helvetica Neue, sans-serif;
+    --title-font: "Signifier", ui-serif, Georgia, Cambria, Times New Roman, Times, serif;
+    --letter-spacing-button: 1.5px;
+    --color-gradient: linear-gradient(to right, #fa709a 0%, #fee140 100%);
+}
+:root.light {
+    --bg-color: #ffffff;
+    --bg-image: url(images/light.svg);
+    --text-color: #000000;
+    --button-color: #000000;
+    --button-text: #ffffff;
+    --note-color: #f0f0f0;
+    --text-area-background: linear-gradient(138deg, rgba(255, 255, 255, 0.886) 0%, rgba(255, 255, 255, 0.408) 33%, rgba(255, 255, 255, 0.6) 100%);
+    --text-area-border: 1px solid rgba(79, 84, 92, 0.48);
+    --about-card: #e0e0e0;
+    --about-card-shadow-1: #bebebe;
+    --about-card-shadow-2: #ffffff;
+}
+:root.dark {
+    --bg-color: #000000;
+    --bg-image: url(images/dark.svg);
+    --text-color: #E8E2E2;
+    --button-color: #ffffff;
+    --button-text: #000000;
+    --note-color: #1a1a1a;
+    --text-area-background: linear-gradient(138deg, rgba(48, 0, 65, 0.6) 0%, rgba(72, 12, 84, 0.2) 33%, rgba(65, 8, 92, 0.2) 100%);
+    --text-area-border: 1px solid rgba(79, 84, 92, 0.48);
+    --about-card: #1a1a1a;
+    --about-card-shadow-1: #000000;
+    --about-card-shadow-2: #333333;
+}
+
+.toggle-container {
+    position: relative;
+}
+.theme-btn.light {
+    display: none;
+}
+.dark .theme-btn.dark {
+    display: none;
+}
+.dark .theme-btn.light {
+    display: block;
+}
+/* -------------------- TOGGLE THEME & VARIABLES (end) ---------------------- */
+/* -------------------------------------------------------------------------- */
+
+
+/* ---------------------------- GLOBAL (start) ------------------------------ */
+/* -------------------------------------------------------------------------- */
+html, body {
+    box-sizing: border-box;
+    font-family: var(--body-font);
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    background-image: var(--bg-image);
+    background-attachment: fixed;
+    background-size: cover;
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    position: relative;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+    padding: 0;
+    margin: 0;
+}
+
+.content-container {
+    flex: 1 0 auto;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    min-height: calc(100% - 160px);
+    padding-bottom: 100px;
+}
+/* ---------------------------- GLOBAL (end) -------------------------------- */
+/* -------------------------------------------------------------------------- */
+
+/* ---------------------------- NAVBAR (start) ------------------------------ */
+/* -------------------------------------------------------------------------- */
+.navbar ul {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1rem 1.5rem;
+}
+
+.navbar a {
+    position: relative;
+    text-decoration: none;
+    color: var(--text-color);
+    vertical-align: middle;
+}
+
+.navbar .logo, .footer-logo, .fav-logo {
+    margin-right: auto;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+}
+
+.navbar .logo a, .footer-logo a, .fav-logo a {
+    font-weight: 900;
+}
+
+.navbar .logo span, .footer-logo span {
+    background-image: var(--color-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.search, .favorites, .about, .toggle, .signup, .login, .logout {
+    margin-left: 3rem;
+    font-size: 1rem;
+}
+/* ---------------------------- NAVBAR (end) -------------------------------- */
+/* -------------------------------------------------------------------------- */
+
+
+/* ------------------------------- BODY (start) ----------------------------- */
+/* -------------------------------------------------------------------------- */
+.body-logo {
+    font-family: var(--body-font);
+    text-transform: uppercase;
+    font-size: 5rem;
+    padding: 1.5rem 0;
+    font-weight: 900;
+}
+.body-logo span {
+    background-image: var(--color-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.description {
+    font-family: var(--title-font);
+    width: 80%;
+    font-size: 1.8rem;
+    margin: auto;
+    padding: 1rem 0;
+}
+
+.model-form, .gpt-form, .api-form, .signup-form, .login-form {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+}
+.model-form-text, .gpt-form-text, .api-form-text {
+    padding: 1rem 0;
+    text-align: left;
+    font-size: 1.2rem;
+}
+.signup-form-text, .login-form-text {
+    padding: 1rem 0;
+    align-self: center;
+    font-size: 1.2rem;
+}
+
+.model .ml_textarea, .chat .chat_textarea {
+    height: 20vh;
+    width: 100%;
+    padding: 1rem;
+    color: var(--text-color);
+    font-size: 1rem;
+    background: var(--text-area-background);
+    border: var(--text-area-border);
+    border-radius: 6px;
+}
+#model-button, #chat-button {
+    visibility: hidden;
+    margin: auto;
+}
+#model-button.show, #chat-button.show {
+    visibility: visible;
+}
+
+select, option {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+#subject, #title {
+    height: auto;
+    width: 70%;
+    color: var(--text-color);
+    background: var(--text-area-background);
+    border: var(--text-area-border);
+    border-radius: 6px;
+    padding: 1rem;
+}
+/* ------------------------------- BODY (end) ------------------------------- */
+/* -------------------------------------------------------------------------- */
+
+
+/* ---------------------------- FOOTER (start) ------------------------------ */
+/* -------------------------------------------------------------------------- */
+.footer {
+    flex-shrink: 0;
+    width: 100%;
+    padding: 0.5rem 0;
+    color: var(--text-color);
+    font-size: 1rem;
+    text-align: center;
+}
+/* ---------------------------- FOOTER (end) -------------------------------- */
+/* -------------------------------------------------------------------------- */
+
+
+
+/* ---------------------------- MISC. (start) ------------------------------- */
+/* -------------------------------------------------------------------------- */
+hr {
+    border: 0;
+    border-top: 3px solid rgba(220, 220, 220, 0.5);
+    width: 100%;
+    max-width: 1000px;
+    align-self: center;
+}
+li {
+    list-style: none;
+}
+a {
+    text-decoration: none;
+    color: var(--text-color);
+}
+.bold {
+    font-size: 1.7rem;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.note {
+    padding: 0.5rem 1rem;
+    font-size: 1.1rem;
+    background-color: var(--note-color);
+    border-radius: 6px;
+}
+.collapse {
+  display: none;
+}
+
+button:not(.favorite-button):not(.delete-button) {
+    padding: 10px 15px;
+    border-radius: 50px;
+    border: 0;
+    background-color: var(--button-color);
+    box-shadow: rgb(0 0 0 / 5%) 0 0 8px;
+    letter-spacing: var(--letter-spacing-button);
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    transition: all .5s ease;
+    position: relative;
+    color: var(--button-text);
+}
+button:not(.favorite-button):not(.delete-button):hover {
+    cursor: pointer;
+    letter-spacing: 2px;
+    background-color: hsl(261deg 80% 48%);
+    color: hsl(0, 0%, 100%);
+    box-shadow: rgb(93 24 220) 0px 7px 29px 0px;
+}
+button:not(.favorite-button):not(.delete-button):active {
+    letter-spacing: 2px;
+    background-color: hsl(261deg 80% 48%);
+    color: hsl(0, 0%, 100%);
+    box-shadow: rgb(93 24 220) 0px 0px 0px 0px;
+    transition: 100ms;
+}
+.button__text:not(.favorite-button):not(.delete-button) {
+    transition: all 0.2s;
+}
+.button--loading:not(.favorite-button):not(.delete-button) .button__text {
+    visibility: hidden;
+    opacity: 0;
+}
+.button--loading:not(.favorite-button):not(.delete-button)::after {
+    content: "";
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    border: 2px solid transparent;
+    border-top-color: #86C232;;
+    border-radius: 50%;
+    animation: button-loading-spinner 1s ease infinite;
+}
+@keyframes button-loading-spinner {
+  from {
+    transform: rotate(0turn);
+  } to {
+    transform: rotate(1turn);
+  }
+}
+
+table:not(.result-table) {
+    width: 100%;
+    height: 100px;
+    overflow-y: auto;
+    margin: 1rem 0;
+    background: var(--text-area-background);
+    border: var(--text-area-border);
+    border-radius: 6px;
+}
+th, td {
+    padding: 0.5rem 1rem;
+}
+/* ---------------------------- MISC. (end) ------------------------------- */
+/* -------------------------------------------------------------------------- */
+
+
+
+/* --------------------------- RESULTS (start) ------------------------------ */
+/* -------------------------------------------------------------------------- */
+.recommend {
+    padding: 1rem;
+    margin: 0;
+    text-align: center;
+}
+.ml-table, .gpt-table, .api-table, .favorites-table {
+    background-color: var(--text-area-background);
+    text-align: left;
+    margin: 0 2rem 3rem 0;
+    overflow: auto;
+    max-height: 40vh;
+    min-width: 100%;
+}
+.ml-table::-webkit-scrollbar, .gpt-table::-webkit-scrollbar, .api-table::-webkit-scrollbar, .favorites-table::-webkit-scrollbar {
+    display: none;
+}
+.result-table, .favorites-table {
+    min-width: 100%;
+    border-collapse: collapse;
+    margin: 0;
+    font-size: 1.2rem;
+}
+.result-table td, .favorites-table td {
+    padding: 0.5rem 1rem;
+}
+.result-table th {
+    position: sticky;
+    top: 0;
+    background: url(images/header.svg) no-repeat center;
+    color: var(--button-text);
+}
+.result-table tr, .favorites-table tr {
+    border-bottom: var(--text-area-border);
+}
+
+.favorite-button, .delete-button {
+    cursor: pointer;
+    padding: 5px 5px;
+    border-radius: 10px;
+    border: 0;
+    background-color: var(--button-color);
+    font-size: 8px;
+    color: var(--button-text);
+}
+/* ---------------------------- RESULTS (end) ------------------------------- */
+/* -------------------------------------------------------------------------- */
+
+
+/* ---------------------------- ABOUT (start) ------------------------------- */
+/* -------------------------------------------------------------------------- */
+.about-page {
+    padding: 0.5rem 0;
+    text-align: center;
+}
+
+.members {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card {
+    margin: 0.5rem;
+    padding: 1rem;
+    width: 300px;
+    height: 200px;
+    border-radius: 30px;
+    background: var(--about-card);
+    box-shadow: 10px 10px 20px var(--about-card-shadow-1),
+             -10px -10px 20px var(--about-card-shadow-2);
+}
+.card-title {
+    font-size: 1.2rem;
+    font-weight: 900;
+    text-align: center;
+}
+.card-subtitle {
+    font-style: italic;
+    font-size: 0.8rem;
+    text-align: center;
+}
+.card-body {
+    font-size: 1rem;
+    text-align: left;
+    padding: 0.5rem 0;
+}
+/* ---------------------------- ABOUT (end) --------------------------------- */
+/* -------------------------------------------------------------------------- */
+
+
+/* ---------------------------- LOGIN / SIGNUP (start) ---------------------- */
+/* -------------------------------------------------------------------------- */
+.input-box {
+    position: relative;
+    margin: 30px 0;
+    width: 310px;
+    border-bottom: 2px solid var(--text-color);
+}
+
+.input-box label {
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    color: var(--text-color);
+    font-size: 1em;
+    pointer-events: none;
+    transition: .5s;
+}
+
+input:focus ~ label, input:valid ~ label {
+    top: -5px;
+}
+
+.input-box input {
+    width: 100%;
+    height: 50px;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    padding: 0 35px 0 5px;
+    color: var(--text-color);
+}
+
+.input-box ion-icon {
+    position: absolute;
+    right: 8px;
+    color: var(--text-color);
+    font-size: 1.2em;
+    top: 20px;
+}
+
+.remember-me {
+    margin: -15px 0 15px;
+    font-size: .9em;
+    color: var(--text-color);
+    display: flex;
+}
+
+.remember-me label input {
+    margin-right: 5px;
+}
+
+.register {
+    margin: 15px 0;
+    font-size: .9em;
+    color: var(--text-color);
+}
+
+.register a {
+    font-weight: 700;
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+.login-form button, .signup-form button {
+    margin: 20px 0;
+}
+/* ---------------------------- LOGIN / SIGNUP (end) ---------------------- */
+/* -------------------------------------------------------------------------- */
+
+
+/* ---------------------------- FEEDBACK TO USERS (start) ------------------------------- */
+/* -------------------------------------------------------------------------------------- */
+.flash-container {
+  position: relative;
+  min-height: 20px;
+}
+.flashes {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.alert {
+    position: relative;
+    text-align: center;
+    margin: 0 auto;
+    margin-bottom: 1rem;
+    padding: 15px;
+    border: var(--text-area-border);
+    border-radius: 6px;
+    max-width: 500px;
+}
+.alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+.alert-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+/* ---------------------------- FEEDBACK TO USERS (end) ------------------------------- */
+/* -------------------------------------------------------------------------------------- */
+

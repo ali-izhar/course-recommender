@@ -1,0 +1,119 @@
+{% extends 'base_template.html' %}
+
+{% block title %}
+Learn Flow - Dive Deep Into Learning
+{% endblock %}
+
+{% block content %}
+<div class="body-logo">
+    Learn<span> flow</span>
+</div>
+<div class="description">
+    <p>A web application that allows users to search for online courses based on their subject of interest.</p>
+</div>
+
+<div class="search-container">
+
+    <div class="model-form" id="mlAPI">
+        <div class="model-form-text">
+            <span class="bold">ML model search</span><br>
+            Discover your next course with our custom ML model!<br><br>
+            <button class="toggle-note" data-target="#note2" data-text="Show description">Show description</button>
+            <br><br><span id="note2" class="collapse note">
+            Our Machine Learning model has been trained on over 3000 courses, making it the perfect tool to find
+            the best course for you. Start searching today and let our model guide you on your learning journey.
+            For optimal results, try using singular keywords such as "python", "java", "flask", and "machine learning".
+            </span>
+        </div>
+        <div class="model">
+            <form id="model" action="{{ url_for('model_result') }}" class="form" method="POST">
+                <textarea class="ml_textarea" name="prompt" placeholder="Start typing here..."
+                onkeyup="ml_btn_visibility();"></textarea>
+                <br><br>
+                <button type="submit" class="button" id="model-button"
+                        onclick="this.classList.toggle('button--loading')">
+                    <span class="button__text">get results</span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+
+
+    <div class="gpt-form" id="gptAPI">
+        <div class="gpt-form-text">
+            <span class="bold">gpt search</span><br>
+            Chat with ChatGPT to discover your next course!<br><br>
+            <button class="toggle-note" data-target="#note3" data-text="Show description">Show description</button>
+            <br><br><span id="note3" class="collapse note">
+            ChatGPT is here to help you with all your educational queries. When asking questions, please use learning
+            keywords such as 'how to learn machine learning', 'python fundamentals', 'data science mastery', and more,
+            in your natural language queries.
+            </span>
+        </div>
+        <div class="chat">
+            <form id="chat" action="{{ url_for('chatbot_result') }}" class="form" method="POST">
+                <textarea class="chat_textarea" name="prompt" placeholder="Start typing here..."
+                onkeyup="chat_btn_visibility();"></textarea>
+                <br><br>
+                <button type="submit" class="button" id="chat-button"
+                        onclick="this.classList.toggle('button--loading')">
+                    <span class="button__text">get results</span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+
+    <div class="api-form" id="udemyAPI">
+        <div class="api-form-text">
+            <span class="bold">Api search</span><br>
+            Ready to dive deep into learning? Search for a course below to get started!<br><br>
+            <button class="toggle-note" data-target="#note1" data-text="Show description">Show description</button>
+            <br><br><span id="note1" class="collapse note">
+            Our search results are powered by the Udemy API. As the free version of the API only provides
+            limited results, the accuracy of the search results may be compromised. For best results, we recommend
+            using either the Course Finder, our custom Machine Learning model that helps you find the best course,
+            or the GPT 3 API, which is the ChatGPT plugin for answering general questions. When searching,
+            consider using keywords such as "machine learning" and "python fundamentals."
+            </span>
+        </div>
+
+
+        <table>
+        <form action="{{ url_for('options') }}" class="form" method="POST">
+            <tr>
+                <td><label class="subject" for="subject">Subject</label></td>
+                <td>
+                    <select id="subject" name="subject">
+                        <option value="computer_science">Computer Science</option>
+                        <option value="math">Math</option>
+                        <option value="history">History</option>
+                        <option value="other">Other</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td><label class="title" for="title">Course Title</label></td>
+                <td><input type="text" id="title" name="title" placeholder="Introduction to Python"
+                           onkeyup="submit_btn_visibility();"></td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td><button type="submit" class="button" id="submit-btn"
+                            onclick="this.classList.toggle('button--loading')"
+                            disabled="disabled">
+                            <span class="button__text">disabled</span>
+                </button>
+                </td>
+            </tr>
+
+            <td></td>
+        </form>
+        </table>
+    </div>
+
+</div>
+{% endblock %}

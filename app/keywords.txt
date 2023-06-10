@@ -1,0 +1,339 @@
+skills
+printing
+act
+ai
+aws
+active learning
+ada
+adaptive learning
+analytics
+andragogy
+android
+angular
+ansible
+apache
+app development
+artificial intelligence
+assembly language
+assessment
+assistive technology
+asynchronous learning
+augmented reality
+authentic assessment
+azure
+bash
+big data hadoop
+bitcoin
+blended learning
+blockchain ethereum
+bloom taxonomy
+brain-based learning
+c#
+c++
+career 
+counseling
+cassandra
+chatbots
+cisco
+classroom
+management
+cloud platform
+cloud computing
+cobol
+coldfusion
+collaboration tools
+collaborative learning
+collaborative problem-solving
+college admissions
+community of inquiry
+competency-based assessment
+competency-based learning
+computer programming
+content management systems
+course management system
+creativity in education
+critical thinking
+curriculum design
+curriculum development
+dart
+data science
+database systems
+delphi
+devops tools
+differentiated instruction
+digital badges
+disciplinary literacy
+distance learning
+django
+docker
+drupal
+e-commerce
+e-learning
+edtech startups
+education
+education policy
+education reform
+educational assessment
+educational psychology
+educational research
+educational software
+educational technology
+emotional intelligence in education
+erlang
+experiential learning
+extracurricular activities
+f#
+feedback
+firewalls
+flask
+flipped classroom
+formative assessment
+fortran
+gmat
+gre
+gamification
+gamification in education
+gamified assessments
+go
+google
+google analytics
+google cloud
+grading
+groovy
+growth mindset
+haskell
+higher education
+hubspot
+hyper-v
+hyperledger
+iis
+inclusive education
+informal learning
+innovation in education
+inquiry-based learning
+instructional design
+instructional materials
+interactive whiteboards
+internet of things
+internship programs
+iot platforms
+java
+javascript
+jenkins
+joomla
+julia
+juniper
+kafka
+keras
+kotlin
+kubernetes
+lms
+labview
+language
+learning analytics
+learning communities
+learning content management system
+learning disabilities
+learning management system
+learning objectives
+learning outcomes
+learning paths
+learning portals
+learning spaces
+learning styles
+learning technology
+learning theories
+lifelong learning
+linux
+lisp
+lua
+matlab
+ml
+score
+semester
+research
+research paper
+mooc
+moocs
+machine learning
+machine learning frameworks
+magento
+marketing automation
+marketo
+massive open online course
+mastery learning
+metacognition
+microlearning
+microsoft teams
+mind mapping
+mindfulness in education
+mobile app development platforms
+mobile learning
+mongodb
+multiple intelligences
+mysql
+network infrastructure
+neuroscience of learning
+nginx
+note-taking
+oer
+objective-c
+online assessments
+online learning
+online teaching
+online tutoring
+open educational resources
+operating systems
+oracle
+php
+palo alto
+pardot
+parent involvement
+pascal
+pedagogy
+peer-to-peer learning
+perl
+personal learning environments
+personal learning networks
+personalized learning
+power bi
+powershell
+problem-based learning
+programming languages
+project-based learning
+prolog
+pytorch
+python
+r
+react
+react native
+real-world learning
+reflective learning
+reflective practice
+robotics
+rubrics
+ruby
+ruby on rails
+rust
+sat
+sel
+sql
+sql server
+ssl
+steam education
+stem education
+scala
+scheme
+school counseling
+scikit-learn
+scratch
+security
+self-directed learning
+self-efficacy
+service learning
+shell scripting
+shopify
+simulations
+slack
+smalltalk
+social learning
+social-emotional learning
+spark
+special education
+standards-based grading
+student engagement
+student-centered learning
+study abroad programs
+study skills
+summative assessment
+swift
+synchronous learning
+tableau
+tcl/tk
+teacher burnout
+teacher evaluation
+teacher leadership
+teacher mentoring
+teacher professional development
+teacher retention
+teacher shortage
+teacher training
+teacher well-being
+teaching effectiveness
+teaching quality
+tensorflow
+test preparation
+time management
+transferable skills
+typescript
+udl
+universal design for learning
+vhdl
+vmware
+vpns
+verilog
+virtual learning
+virtual reality
+virtualbox
+virtualization
+visual basic
+vue.js
+web development
+web development frameworks
+web servers
+windows
+woocommerce
+wordpress
+xamarin
+zoom
+academic support
+achievement
+adaptive learning
+assessment
+business intelligence
+career
+courses
+curriculum
+development
+distance learning
+e-learning
+etextbooks
+edtech
+educational apps
+educational needs
+educational resources
+educational software
+educational technology
+employment
+encryption
+evaluation
+feedback
+ios
+improvement
+job
+knowledge
+learning
+learning tools
+macos
+online education
+personalized learning
+recommendation system
+skill-based learning
+skills
+student-centered learning
+study
+study materials
+subjects
+success
+syllabus
+topics
+training
+virtual classrooms
+computer
+laptop
+mouse
+keyboard
+wifi
+signal
+internet
+technology

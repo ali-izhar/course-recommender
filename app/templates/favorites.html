@@ -1,0 +1,43 @@
+{% extends 'base_template.html' %}
+
+{% block title %}
+Learn Flow - Dive Deep Into Learning
+{% endblock %}
+
+{% block content %}
+<div><p class="recommend bold">Favorite Courses</p></div>
+<div class="favorites-table">
+    {% if user.notes %}
+        <table class="result-table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Course Title</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for note in user.notes %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td><a href="{{ url_for('external', choice=note.url|urlencode) }}" target="_blank">{{ note.data }}</a></td>
+                    <td><button type="submit" class="delete-button" onclick="deleteNote({{note.id}})">
+                        <span aria-hidden="true">Remove</span>
+                    </button>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No favorite courses!</p>
+    {% endif %}
+    <br>
+</div>
+{% endblock %}
+
+{% block col2 %}
+<p>
+    Some other stats...
+</p>
+{% endblock %}

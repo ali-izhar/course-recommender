@@ -1,0 +1,44 @@
+{% extends 'base_template.html' %}
+
+{% block title %}
+Learn Flow - Dive Deep Into Learning
+{% endblock %}
+
+{% block content %}
+<div class="signup-form">
+    <h2>Register Account</h2>
+        <div class="signup-form-text">
+            <form action="{{ url_for('signup') }}"  class="form" method="POST">
+
+                <div class="input-box">
+                    <ion-icon name="person-outline"></ion-icon>
+                    <input type="text" id="firstName" name="firstName" required>
+                    <label for="firstName">First Name</label>
+                </div>
+                <div class="input-box">
+                    <ion-icon name="mail-outline"></ion-icon>
+                    <input type="email" id="email" name="email" required>
+                    <label for="email">Email</label>
+                </div>
+                <div class="input-box">
+                    <ion-icon name="lock-closed-outline"></ion-icon>
+                    <input type="password" id="password1" name="password1" required>
+                    <label for="password1">Password</label>
+                </div>
+                <div class="input-box">
+                    <ion-icon name="lock-closed-outline"></ion-icon>
+                    <input type="password" id="password2" name="password2" required>
+                    <label for="password2">Confirm Password</label>
+                </div>
+                <button class="btn btn1" type="submit">Register</button>
+                <div class="register">
+                    <p>Already have an account?&nbsp<a href="login">Log in</a></p>
+                </div>
+            </form>
+        </div>
+</div>
+
+{% endblock %}
+
+
+
