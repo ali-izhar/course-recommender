@@ -16,20 +16,15 @@ pip install -r requirements.txt
 
 3. Set up your API keys
 ```bash
-Create a .env file in the root directory of the project
-Add the following lines to the .env file
+"""Create a .env file in the root directory of the project
+Add the following lines to the .env file"""
 RAPID_API_KEY=[your-rapid-api-key]
 RAPID_API_HOST=[your-rapid-api-host]
 OPENAI_API_KEY=[your-openai-api-key]
 # any other API keys you may need
 ```
 
-4. Delete existing database instance (optional)
-```bash
-Delete the database.db file in the root directory of the project
-```
-
-5. Run the application
+4. Run the application
 ```bash
 python run.py
 ```
