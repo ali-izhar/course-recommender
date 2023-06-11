@@ -35,6 +35,9 @@ python run.py
 3. Login to your account
 4. Interact with the chatbot to get course recommendations
 
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
 ## References
 1. [ChatGPT](https://openai.com/blog/chatgpt/)
 2. [Flask](https://flask.palletsprojects.com/en/2.0.x/)
