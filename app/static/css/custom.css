@@ -1,0 +1,25 @@
+.flash-card {
+    position: relative;
+    min-height: 20px;
+    padding: 0;
+    margin: 0;
+}
+.flashed-messages {
+    position: absolute;
+    padding: 10px;
+    list-style: none;
+    max-width: fit-content;
+}
+
+.qa-container {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 10px 0;
+    padding: 5px;
+}
+
+.user-message, .assistant-message {
+    max-height: 200px;
+    overflow-y: auto;
+    padding: 5px;
+}
