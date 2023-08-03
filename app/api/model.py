@@ -41,7 +41,7 @@ class Recommender:
         similarities = cosine_similarity([dense_vectors[0]], dense_vectors)
         return similarities
 
-    def recommend_course(self, course_name: str) -> list:
+    def recommend(self, course_name: str) -> list:
         """
         Recommend a list of courses similar to the given course name.
 

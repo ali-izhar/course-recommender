@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block title %}Recommendations{% endblock %}
+
+{% block content %}
+
+<div class="container py-4 py-xl-5">
+    <div class="row gy-4 gy-md-0">
+        <div class="col-md-6 text-center text-md-start d-flex d-sm-flex d-md-flex justify-content-center align-items-center justify-content-md-start align-items-md-center justify-content-xl-center">
+            <div style="max-width: 350px;">
+                <h2 class="text-uppercase fw-bold">Your Personalized Course Recommendations</h2>
+                <p class="my-3">Based on your selected interests and goals, we've compiled a set of courses to help you on your educational journey.</p>
+                <div class="col-12 col-md-6 align-self-center" style="margin-top: 25px;">
+                    <div class="card"><img class="card-img w-100 d-block" src="{{ url_for('static', filename='img/coursera.svg') }}" style="max-height: 100px;" width="25" height="25"></div>
+                </div>
+                <div class="col-12 col-md-6 align-self-center" style="margin-top: 25px;">
+                    <div class="card"><img class="card-img w-100 d-block" src="{{ url_for('static', filename='img/openai.svg') }}" style="max-height: 100px;" width="50" height="50"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="p-xl-5 m-xl-5"><img class="rounded img-fluid w-100 fit-cover" style="min-height: 300px;" src="{{ url_for('static', filename='img/search.svg') }}"></div>
+        </div>
+    </div>
+
+    {% if sender == 'gpt' %}
+        <div class="conversation">
+            {% for i in range(0, conversation|length, 2) %}
+                <div class="qa-container">
+                    <div class="user-message"><strong>User: {{ conversation[i].content }}</strong></div>
+                    {% if conversation[i+1] %}
+                        <div class="assistant-message"><strong>AI:</strong> {{ conversation[i+1].content }}</div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>      
+        
+        <div class="input-group mb-3">
+            <input type="text" id="userInput" class="form-control" placeholder="Type your message here...">
+            <button class="btn btn-primary" id="sendBtn">Send</button>
+        </div>
+
+        <div class="input-group mb-3">
+            <button class="btn btn-danger" id="clearBtn">Clear Conversation</button>
+        </div>
+
+    {% else %}
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Course Name</th>
+                        <th>Similarity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for course in courses %}
+                        <tr>
+                            <td>{{loop.index}}</td>
+                            <td><a href="{{ course[1].url }}" target="_blank">{{ course[0] }}</a></td>
+                            <td>{{ '{:.1f}'.format(course[1].similarity * 100) }}%</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endif %}
+
+</div>
+
+{% endblock %}
