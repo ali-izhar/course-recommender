@@ -13,9 +13,8 @@ def recommend():
         with current_app.app_context():
             recommendation_model = Recommender()
             
-        courses = recommendation_model.get_recommendation(prompt)
-        print(courses)
-        return render_template('result.html', courses=courses)
+        courses = recommendation_model.recommend(prompt)
+        return render_template('result.html', sender='model', courses=courses)
     return render_template('index.html')
 
 
@@ -39,7 +38,7 @@ def gpt():
             # Return JSON if request is made via AJAX
             return jsonify(response=response, conversation=conversation)
         else:
-            return render_template('result.html', conversation=conversation)
+            return render_template('result.html', sender='gpt', conversation=conversation)
 
     return render_template('index.html')
 

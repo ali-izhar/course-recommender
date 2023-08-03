@@ -1,50 +1,76 @@
 import os
-import numpy as np
 import pandas as pd
+from fuzzywuzzy import process
+from sklearn.metrics.pairwise import cosine_similarity
+from sklearn.feature_extraction.text import CountVectorizer
 
-from .chatgpt import get_embeddings
-from app.services import get_all_course_names, bulk_insert_embeddings, get_all_course_embeddings
-
-assets_dir = os.path.join(os.path.dirname(__file__), 'assets')
-csv_path = os.path.join(assets_dir, 'Coursera.csv')
 
 class Recommender:
-    def __init__(self, path=csv_path):
-        self.path = path
-        self._load_embeddings()
+    def __init__(self):
+        assets_path = os.path.join(os.path.dirname(__file__), 'assets')
+        csv_path = os.path.join(assets_path, 'Coursera.csv')
+        self.df = pd.read_csv(csv_path)
 
-    def _load_embeddings(self):
-        existing_course_names = set(get_all_course_names())
-        data = pd.read_csv(self.path)
-        embeddings_to_insert = []
+    @staticmethod
+    def vectorize_strings(strings: list) -> list:
+        """
+        Vectorize the given strings using the CountVectorizer.
 
-        for course_name in data['course_name']:
-            if course_name not in existing_course_names:
-                embedding = get_embeddings(course_name)
-                embeddings_to_insert.append({'course_name': course_name, 'embedding': embedding})
+        Args:
+            strings (list): A list of strings to vectorize.
 
-        if embeddings_to_insert:
-            bulk_insert_embeddings(embeddings_to_insert)
+        Returns:
+            A dense vector representation of the given strings.
+        """
+        vectorizer = CountVectorizer()
+        vectors = vectorizer.fit_transform(strings)
+        dense_vectors = vectors.toarray()
+        return dense_vectors
 
-    def get_similarity_score(self, embedding1, embedding2):
-        return np.inner(embedding1, embedding2)
+    @staticmethod
+    def compute_similarity(dense_vectors: list) -> list:
+        """
+        Compute the cosine similarity between the first vector and the rest of the vectors.
 
-    def get_recommendation(self, user_prompt, similarity_score_threshold=0.5, top_n=5):
-        user_embedding = get_embeddings(user_prompt)
-        all_embeddings = get_all_course_embeddings()
+        Args:
+            dense_vectors (list): A list of dense vectors.
 
-        recommendations = [
-            (course.course_name, self.get_similarity_score(user_embedding, course.embedding_list))
-            for course in all_embeddings
-            if self.get_similarity_score(user_embedding, course.embedding_list) >= similarity_score_threshold
-        ]
+        Returns:
+            A list of cosine similarities between the first vector and the rest of the vectors.
+        """
+        similarities = cosine_similarity([dense_vectors[0]], dense_vectors)
+        return similarities
 
-        recommendations.sort(key=lambda x: -x[1])
-        return recommendations[:top_n]
+    def recommend(self, course_name: str) -> list:
+        """
+        Recommend a list of courses similar to the given course name.
 
+        Args:
+            course_name (str): The name of the course to find similar courses for.
 
-# if __name__ == '__main__':
-#     recommender = Recommender()
-#     course = 'Natural language processing'
-#     recommendations = recommender.get_recommendation(course)
-#     print(recommendations)
+        Returns:
+            A dictionary containing the top 5 recommended courses and their similarity scores.
+        """
+        course_name = course_name.lower()
+        if course_name not in self.df['course_name'].str.lower().values:
+            matches = process.extract(course_name, self.df['course_name'].str.lower().values, limit=5)
+            strings = [course_name] + [match[0] for match in matches]
+        else:
+            strings = [course_name]
+
+        dense_vectors = self.vectorize_strings(strings)
+        similarities = self.compute_similarity(dense_vectors)
+
+        recommended_courses = {}
+        for i in range(1, len(strings)):
+            name = self.df[self.df['course_name'].str.lower() == strings[i]].iloc[0]['course_name']
+            url = self.df[self.df['course_name'].str.lower() == strings[i]].iloc[0]['course_url']
+            similarity = round(similarities[0][i], 2)
+            if similarity >= 0.30:
+                recommended_courses[name] = {'url': url, 'similarity': similarity}
+
+        sorted_courses = {k: v for k, v in sorted(recommended_courses.items(),
+                                                  key=lambda item: item[1]['similarity'], reverse=True)}
+
+        # [print(f"{k}: {v['similarity']}") for k, v in sorted_courses.items()]
+        return list(sorted_courses.items())

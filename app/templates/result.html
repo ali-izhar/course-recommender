@@ -23,43 +23,50 @@
         </div>
     </div>
 
-    <div class="conversation">
-        {% for i in range(0, conversation|length, 2) %}
-            <div class="qa-container">
-                <div class="user-message"><strong>User: {{ conversation[i].content }}</strong></div>
-                {% if conversation[i+1] %}
-                    <div class="assistant-message"><strong>AI:</strong> {{ conversation[i+1].content }}</div>
-                {% endif %}
-            </div>
-        {% endfor %}
-    </div>      
-    
-    <div class="input-group mb-3">
-        <input type="text" id="userInput" class="form-control" placeholder="Type your message here...">
-        <button class="btn btn-primary" id="sendBtn">Send</button>
-    </div>
+    {% if sender == 'gpt' %}
+        <div class="conversation">
+            {% for i in range(0, conversation|length, 2) %}
+                <div class="qa-container">
+                    <div class="user-message"><strong>User: {{ conversation[i].content }}</strong></div>
+                    {% if conversation[i+1] %}
+                        <div class="assistant-message"><strong>AI:</strong> {{ conversation[i+1].content }}</div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>      
+        
+        <div class="input-group mb-3">
+            <input type="text" id="userInput" class="form-control" placeholder="Type your message here...">
+            <button class="btn btn-primary" id="sendBtn">Send</button>
+        </div>
 
-    <!-- clear conversation -->
-    <div class="input-group mb-3">
-        <button class="btn btn-danger" id="clearBtn">Clear Conversation</button>
-    </div>
+        <div class="input-group mb-3">
+            <button class="btn btn-danger" id="clearBtn">Clear Conversation</button>
+        </div>
 
-    <!-- <div class="table-responsive">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Course Name</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for course in courses %}
+    {% else %}
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
                     <tr>
-                        <td>{{ course }}</td>
+                        <th></th>
+                        <th>Course Name</th>
+                        <th>Similarity</th>
                     </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div> -->
+                </thead>
+                <tbody>
+                    {% for course in courses %}
+                        <tr>
+                            <td>{{loop.index}}</td>
+                            <td><a href="{{ course[1].url }}" target="_blank">{{ course[0] }}</a></td>
+                            <td>{{ '{:.1f}'.format(course[1].similarity * 100) }}%</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endif %}
+
 </div>
 
 {% endblock %}
