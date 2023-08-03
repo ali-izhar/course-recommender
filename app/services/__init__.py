@@ -12,5 +12,7 @@ __all__ = [
     'get_all_course_embeddings',
     'update_course_embedding',
     'delete_course_embedding',
-    'delete_all_course_embeddings'
+    'delete_all_course_embeddings',
+    'save_course_to_profile',
+    'get_favorite_courses',
 ]

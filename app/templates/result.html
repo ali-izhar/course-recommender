@@ -52,6 +52,7 @@
                         <th></th>
                         <th>Course Name</th>
                         <th>Similarity</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -60,6 +61,7 @@
                             <td>{{loop.index}}</td>
                             <td><a href="{{ course[1].url }}" target="_blank">{{ course[0] }}</a></td>
                             <td>{{ '{:.1f}'.format(course[1].similarity * 100) }}%</td>
+                            <td><a href="{{ url_for('user.save', course_name=course[0], course_url=course[1].url, return_url=request.url) }}" class="btn btn-dark btn-sm">Save</a></td>
                         </tr>
                     {% endfor %}
                 </tbody>

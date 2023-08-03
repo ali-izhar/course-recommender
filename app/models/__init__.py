@@ -1,3 +1,3 @@
-from .user import User, CourseEmbedding
+from .user import User, CourseEmbedding, FavoriteCourse
 
-__all__ = ['User', 'CourseEmbedding']
+__all__ = ['User', 'CourseEmbedding', 'FavoriteCourse']

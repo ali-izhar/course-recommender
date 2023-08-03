@@ -1,4 +1,4 @@
-from app.models import User, CourseEmbedding
+from app.models import User, CourseEmbedding, FavoriteCourse
 from app import db
 
 def get_user_by_email(email):
@@ -64,3 +64,12 @@ def bulk_insert_embeddings(embeddings):
 
 def get_all_course_names():
     return [course.course_name for course in CourseEmbedding.query.with_entities(CourseEmbedding.course_name).all()]
+
+def save_course_to_profile(user_id, course):
+    favorite_course = FavoriteCourse(user_id=user_id, course_name=course['name'], course_url=course['url'])
+    db.session.add(favorite_course)
+    db.session.commit()
+    return True
+
+def get_favorite_courses(user_id):
+    return FavoriteCourse.query.filter_by(user_id=user_id).all()

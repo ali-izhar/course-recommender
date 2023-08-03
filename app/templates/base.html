@@ -25,6 +25,7 @@
                     <li class="nav-item"></li>
                     {% if current_user.is_authenticated %}
                         <li class="nav-item"><a class="nav-link active" href="{{ url_for('main.index') }}">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url_for('user.favs') }}">Favorites</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ url_for('main.team') }}">Team</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ url_for('auth.logout') }}">Logout</a></li>
                     {% else %}
@@ -52,7 +53,7 @@
 
     {% block content %}{% endblock %}
 
-    <footer class="bg-primary-gradient" style="position: absolute;bottom: 0;left: 0;right: 0;">
+    <footer class="bg-primary-gradient">
         <div class="container py-4 py-lg-5" style="margin-top: 20px;">
             <hr>
             <div class="text-muted d-flex justify-content-between align-items-center pt-3">
