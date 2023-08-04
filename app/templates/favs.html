@@ -23,18 +23,32 @@
                 <tr>
                     <th></th>
                     <th>Course Name</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
+                {% if not courses %}
+                    <tr>
+                        <td></td>
+                        <td colspan="2">No courses saved.</td>
+                    </tr>
+                {% endif %}
+
                 {% for course in courses %}
                     <tr>
                         <td>{{loop.index}}</td>
                         <td><a href="{{ course.course_url }}" target="_blank">{{ course.course_name }}</a></td>
+                        <td><a href="{{ url_for('user.remove', course_name=course.course_name) }}" class="btn btn-danger btn-sm">Remove</a></td>
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
-    </div>    
+    </div>
+    
+    <!-- remove all favorites -->
+    <div class="input-group mb-3">
+        <a href="{{ url_for('user.remove_all') }}" class="btn btn-danger">Remove All</a>
+    </div>
 
 </div>
 

@@ -21,7 +21,7 @@ class User(db.Model, UserMixin):
         self.courses = json.dumps(value)
 
     def __repr__(self):
-        return f'<User {self.email}>'
+        return f'{self.email}'
 
 
 class FavoriteCourse(db.Model):
@@ -31,7 +31,7 @@ class FavoriteCourse(db.Model):
     course_url = db.Column(db.String(255))
 
     def __repr__(self):
-        return f'<FavoriteCourse {self.course_name}>'
+        return f'{self.course_name}'
 
 
 class CourseEmbedding(db.Model):
@@ -50,4 +50,4 @@ class CourseEmbedding(db.Model):
         self.embedding = json.dumps(value)
 
     def __repr__(self):
-        return f'<CourseEmbedding {self.course_name}>'
+        return f'{self.course_name}'

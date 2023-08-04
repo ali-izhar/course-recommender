@@ -41,15 +41,15 @@
         <div class="card-body text-center d-flex flex-column align-items-center">
             {% with messages = get_flashed_messages(with_categories=True) %}
                 {% if messages %}
-                    <div class="alert alert-warning flashed-messages">
-                        {% for category, message in messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }} flashed-messages">
                             {{ message }}
-                        {% endfor %}
-                    </div>
+                        </div>
+                    {% endfor %}
                 {% endif %}
             {% endwith %}
         </div>
-    </div>
+    </div>    
 
     {% block content %}{% endblock %}
 

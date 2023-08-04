@@ -71,5 +71,19 @@ def save_course_to_profile(user_id, course):
     db.session.commit()
     return True
 
+def remove_course_from_profile(user_id, course_name):
+    favorite_course = FavoriteCourse.query.filter_by(user_id=user_id, course_name=course_name).first()
+    if favorite_course:
+        db.session.delete(favorite_course)
+        db.session.commit()
+        return True
+    return False
+
+def remove_all_courses_from_profile(user_id):
+    favorite_courses = FavoriteCourse.query.filter_by(user_id=user_id).all()
+    for favorite_course in favorite_courses:
+        db.session.delete(favorite_course)
+    db.session.commit()
+
 def get_favorite_courses(user_id):
     return FavoriteCourse.query.filter_by(user_id=user_id).all()

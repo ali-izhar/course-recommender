@@ -16,20 +16,20 @@ def login():
         user = get_user_by_email(email)
         if user:
             if check_password_hash(user.password, password):
-                flash('Logged in successfully!', category='success')
+                flash('Logged in successfully!', 'success')
                 login_user(user, remember=True)
                 return redirect(url_for('main.index'))
             else:
-                flash('Invalid password!', category='error')
+                flash('Invalid password!', 'danger')
         else:
-            flash('Email does not exist!', category='error')
+            flash('Email does not exist!', 'warning')
     return render_template("login.html", user=current_user)
 
 
 @auth_bp.route('/logout')
 def logout():
     logout_user()
-    flash('Successfully logged out. See you again soon!')
+    flash('Successfully logged out. See you again soon!', 'success')
     return redirect(url_for('auth.login'))
 
 
@@ -42,18 +42,18 @@ def signup():
         password1 = request.form.get('password1')
         password2 = request.form.get('password2')
         if password1 != password2:
-            flash('Passwords do not match!', category='error')
+            flash('Passwords do not match!', 'warning')
         elif len(password1) < 7:
-            flash('Password must be at least 7 characters!', category='error')
+            flash('Password must be at least 7 characters!', 'warning')
         elif len(email) < 4:
-            flash('Email must be greater than 3 characters!', category='error')
+            flash('Email must be greater than 3 characters!', 'warning')
         else:
             user = get_user_by_email(email)
             if user:
-                flash('Email already exists!', category='error')
+                flash('Email already exists!', 'warning')
             else:
                 user = create_user(email, generate_password_hash(password1, method='sha256'))
-                flash('Account created!', category='success')
+                flash('Account created!', 'success')
                 login_user(user, remember=True)
                 return redirect(url_for('main.index'))
     return render_template("signup.html", user=current_user)
