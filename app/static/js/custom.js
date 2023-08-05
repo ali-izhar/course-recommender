@@ -4,6 +4,14 @@ $(document).ready(function() {
     }, 3000);
 });
 
+window.addEventListener('pageshow', (event) => {
+    // If the page was loaded from the cache
+    if (event.persisted) {
+        // Hide the loader
+        document.getElementById('loader-overlay').style.display = 'none';
+    }
+});
+
 function updateButtonState() {
     const userInput = document.getElementById("userInput").value;
     const conversation = document.querySelector(".conversation");
@@ -101,3 +109,15 @@ document.getElementById("userInput").addEventListener("input", function() {
 
 // Update button state when the page loads
 updateButtonState();
+
+const chatGptTextArea = document.getElementById('chatGptTextArea');
+const chatGptSubmitBtn = document.getElementById('chatGptSubmitBtn');
+const loaderOverlay = document.getElementById('loader-overlay');
+
+window.onload = () => {
+    chatGptSubmitBtn.addEventListener('click', function() {
+        if (chatGptTextArea.value.trim() !== "") {
+            loaderOverlay.style.display = "flex";
+        }
+    });
+};

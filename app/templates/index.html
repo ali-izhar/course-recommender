@@ -4,6 +4,18 @@
 
 {% block content %}
 
+<link rel="stylesheet" href="{{ url_for('static', filename='css/loader.css') }}">
+<div class="loader-overlay" id="loader-overlay" style="display: none">
+    <div class="loader">
+        <div id="first">
+            <div id="second">
+                <div id="third">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <section class="py-5">
     <div class="container py-4 py-xl-5">
         <div class="row gy-4 gy-md-0">
