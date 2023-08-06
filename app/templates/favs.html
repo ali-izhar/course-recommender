@@ -21,7 +21,6 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th></th>
                     <th>Course Name</th>
                     <th></th>
                 </tr>
@@ -36,7 +35,6 @@
 
                 {% for course in courses %}
                     <tr>
-                        <td>{{loop.index}}</td>
                         <td><a href="{{ course.course_url }}" target="_blank">{{ course.course_name }}</a></td>
                         <td><a href="{{ url_for('user.remove', course_name=course.course_name) }}" class="btn btn-danger btn-sm">Remove</a></td>
                     </tr>

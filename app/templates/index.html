@@ -2,7 +2,7 @@
 
 {% block title %}Home{% endblock %}
 
-{% block content %}m
+{% block content %}
 
 <div class="loader-overlay" id="loader-overlay" style="display: none">
     <div class="loader">
@@ -35,7 +35,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6" style="min-height: 400px;">
-                <p>Discover your perfect courses with our <strong>machine learning</strong> model - trained on Coursera's vast catalog to match you with tailored recommendations.</p>
+                <p>Discover your perfect courses with our custom <strong>Machine Learning</strong> model - trained on Coursera's vast catalog to match you with tailored recommendations.</p>
                 <form id="mlForm" method="post" action="{{ url_for('task.recommend') }}">
                     <textarea id="mlTextArea" name="prompt" class="bg-light-subtle" data-bss-hover-animate="pulse" style="border-style: dashed;border-color: var(--bs-link-color);border-radius: 10px;overflow: auto;width: 100%;height: 200px;padding: 10px;" placeholder="Start typing your interests here..." required></textarea>
                     <button id="mlSubmitBtn" class="btn btn-primary">Submit</button>

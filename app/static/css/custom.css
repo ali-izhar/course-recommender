@@ -23,3 +23,15 @@
     overflow-y: auto;
     padding: 5px;
 }
+
+.img-container {
+    overflow: hidden; /* Ensures the zoomed-in image stays within boundaries */
+}
+
+.zoom-on-hover {
+    transition: transform 0.3s; /* Smooth transition */
+}
+
+.zoom-on-hover:hover {
+    transform: scale(1.2); /* Zoom in by 20% */
+}
