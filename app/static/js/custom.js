@@ -1,21 +1,30 @@
 $(document).ready(function() {
-    // Fade out flashed messages after 3 seconds
     setTimeout(function() {
         $('.flashed-messages').fadeOut('slow');
     }, 3000);
-
-    // Update button state when the page loads
-    updateButtonState();
 });
 
-// Hide the loader if the page was loaded from the cache
+window.onload = () => {
+    const chatGptTextArea = document.getElementById('chatGptTextArea');
+    const chatGptSubmitBtn = document.getElementById('chatGptSubmitBtn');
+    const loaderOverlay = document.getElementById('loader-overlay');
+
+    chatGptSubmitBtn.addEventListener('click', function() {
+        if (chatGptTextArea.value.trim() !== "") {
+            console.log('loader overlay');
+            loaderOverlay.style.display = "flex";
+        }
+    });
+};
+
 window.addEventListener('pageshow', (event) => {
+    // If the page was loaded from the cache
     if (event.persisted) {
+        // Hide the loader
         document.getElementById('loader-overlay').style.display = 'none';
     }
 });
 
-// Function to update the state of the buttons
 function updateButtonState() {
     const userInput = document.getElementById("userInput").value;
     const conversation = document.querySelector(".conversation");
@@ -29,7 +38,6 @@ function updateButtonState() {
     clearButton.disabled = conversation.innerHTML.trim() === "";
 }
 
-// Event listener for the "Send" button
 document.getElementById("sendBtn").addEventListener("click", function() {
     const sendButton = document.getElementById("sendBtn");
     const originalButtonText = sendButton.textContent;
@@ -85,7 +93,6 @@ document.getElementById("sendBtn").addEventListener("click", function() {
     });
 });
 
-// Event listener for the "Clear" button
 document.getElementById("clearBtn").addEventListener("click", function() {
     // Display a confirmation dialog
     if (window.confirm("Are you sure you want to clear the conversation?")) {
@@ -113,24 +120,5 @@ document.getElementById("userInput").addEventListener("input", function() {
     updateButtonState();
 });
 
-// Event listener for the user input field
-document.getElementById("userInput").addEventListener("input", function() {
-    // Update button state whenever the user types something
-    updateButtonState();
-});
-
-// Event listener to show the loader when the ChatGPT submit button is clicked
-document.addEventListener('DOMContentLoaded', (event) => {
-    const chatGptTextArea = document.getElementById('chatGptTextArea');
-    const chatGptSubmitBtn = document.getElementById('chatGptSubmitBtn');
-    const loaderOverlay = document.getElementById('loader-overlay');
-    const gptForm = document.getElementById('gptForm');
-
-    chatGptSubmitBtn.addEventListener('click', function(e) {
-        if (chatGptTextArea.value.trim() !== "") {
-            e.preventDefault();
-            loaderOverlay.style.display = "flex";
-            gptForm.submit();
-        }
-    });
-});
+// Update button state when the page loads
+updateButtonState();
