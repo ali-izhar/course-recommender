@@ -37,14 +37,14 @@
             <div class="col-md-6" style="min-height: 400px;">
                 <p>Discover your perfect courses with our custom <strong>Machine Learning</strong> model - trained on Coursera's vast catalog to match you with tailored recommendations.</p>
                 <form id="mlForm" method="post" action="{{ url_for('task.recommend') }}">
-                    <textarea id="mlTextArea" name="prompt" class="bg-light-subtle" data-bss-hover-animate="pulse" style="border-style: dashed;border-color: var(--bs-link-color);border-radius: 10px;overflow: auto;width: 100%;height: 200px;padding: 10px;" placeholder="Start typing your interests here..." required></textarea>
+                    <textarea id="mlTextArea" name="prompt" class="bg-light-subtle" style="border-style: dashed;border-color: var(--bs-link-color);border-radius: 10px;overflow: auto;width: 100%;height: 200px;padding: 10px;" placeholder="Start typing your interests here..." required></textarea>
                     <button id="mlSubmitBtn" class="btn btn-primary">Submit</button>
                 </form>
             </div>
             <div class="col-md-6">
                 <p>Chat with our AI to get incredibly customized course suggestions - we leverage <strong>ChatGPT </strong>to understand your goals and recommend the ideal classes.</p>
                 <form id="gptForm" method="post" action="{{ url_for('task.gpt') }}">
-                    <textarea id="chatGptTextArea" name="prompt" class="bg-light-subtle" data-bss-hover-animate="pulse" style="border-style: dashed;border-color: var(--bs-link-color);border-radius: 10px;overflow: auto;width: 100%;height: 200px;padding: 10px;" placeholder="Start typing your question here..." required></textarea>
+                    <textarea id="chatGptTextArea" name="prompt" class="bg-light-subtle" style="border-style: dashed;border-color: var(--bs-link-color);border-radius: 10px;overflow: auto;width: 100%;height: 200px;padding: 10px;" placeholder="Start typing your question here..." required></textarea>
                     <button id="chatGptSubmitBtn" class="btn btn-primary">Submit</button>
                 </form>
             </div>            
