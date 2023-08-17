@@ -19,10 +19,11 @@ def create_app(config_class=Config):
 
     from . import models
 
-    from .views import auth_bp, task_bp, main_bp, user_bp
+    from .views import auth_bp, lab_bp, main_bp, task_bp, user_bp
     app.register_blueprint(auth_bp)
-    app.register_blueprint(task_bp)
+    app.register_blueprint(lab_bp)
     app.register_blueprint(main_bp)
+    app.register_blueprint(task_bp)
     app.register_blueprint(user_bp)
     
     @app.errorhandler(404)
