@@ -27,7 +27,6 @@
                         <li class="nav-item"><a class="nav-link active" href="{{ url_for('main.index') }}">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ url_for('user.favs') }}">Favorites</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ url_for('main.team') }}">Team</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ url_for('lab.search') }}">Lab</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ url_for('auth.logout') }}">Logout</a></li>
                     {% else %}
                         <li class="nav-item"><a class="nav-link" href="{{ url_for('auth.login') }}">Login</a></li>
