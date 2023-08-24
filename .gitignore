@@ -133,3 +133,6 @@ dmypy.json
 
 # sessions
 flask_session/
+
+# boostrap studio design
+*.bsdesign
